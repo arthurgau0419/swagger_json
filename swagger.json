@@ -1,0 +1,832 @@
+{
+  "info" : {
+    "title" : "Flower API",
+    "version" : "1.0.0"
+  },
+  "swagger" : "2.0",
+  "consumes" : [ "multipart/form-data" ],
+  "produces" : [ "application/json" ],
+  "host" : "api.itri.ai",
+  "schemes" : [ "https" ],
+  "basePath" : "/api",
+  "tags" : [ {
+    "name" : "Auth",
+    "description" : "使用者認證"
+  }, {
+    "name" : "User",
+    "description" : "使用者"
+  }, {
+    "name" : "Predict",
+    "description" : "照片神預測"
+  }, {
+    "name" : "Flower",
+    "description" : "花帖? 花牆？ 傻傻分不清楚"
+  } ],
+  "definitions" : {
+    "AuthResponse" : {
+      "type" : "object",
+      "properties" : {
+        "data" : {
+          "type" : "object",
+          "required" : [ "id", "name", "email", "updateTime", "createTime", "api_token" ],
+          "properties" : {
+            "userID" : {
+              "type" : "integer",
+              "example" : 4
+            },
+            "name" : {
+              "type" : "string",
+              "example" : "eocc2"
+            },
+            "email" : {
+              "type" : "string",
+              "example" : "eocc2@gmail2.com"
+            },
+            "updateTime" : {
+              "type" : "string",
+              "example" : "2018-04-30 16:12:09"
+            },
+            "createTime" : {
+              "type" : "string",
+              "example" : "2018-04-30 16:12:09"
+            },
+            "api_token" : {
+              "type" : "string",
+              "example" : "jHcvCKBnhr6xU1AfoqA5XWFiidqjiWiHrMyrJnNTkZUvFxNr9R6OSu677S8h"
+            }
+          }
+        }
+      }
+    },
+    "Prediction" : {
+      "type" : "object",
+      "required" : [ "confidence", "plantName", "resultPlantID", "resultImageURL" ],
+      "properties" : {
+        "confidence" : {
+          "type" : "integer"
+        },
+        "plantName" : {
+          "type" : "string"
+        },
+        "resultPlantID" : {
+          "type" : "integer"
+        },
+        "resultImageURL" : {
+          "type" : "string",
+          "format" : "url"
+        }
+      }
+    },
+    "UserInfo" : {
+      "type" : "object",
+      "required" : [ "userID", "name", "email", "userIcon", "createTime", "updateTime" ],
+      "properties" : {
+        "userID" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string",
+          "format" : "email"
+        },
+        "avatar" : {
+          "type" : "string",
+          "format" : "url"
+        },
+        "createTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "updateTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "FlowerWall" : {
+      "type" : "object",
+      "required" : [ "id", "plantID", "plantName", "url", "userID", "createTime", "longitude", "latitude", "collectionCount", "messageCount" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "plantID" : {
+          "type" : "integer"
+        },
+        "plantName" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string",
+          "format" : "url"
+        },
+        "userID" : {
+          "type" : "integer"
+        },
+        "createTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "longitude" : {
+          "type" : "number"
+        },
+        "latitude" : {
+          "type" : "number"
+        },
+        "collectionCount" : {
+          "type" : "integer"
+        },
+        "messageCount" : {
+          "type" : "integer"
+        }
+      }
+    }
+  },
+  "paths" : {
+    "/register" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "註冊",
+        "description" : "",
+        "security" : [ {
+          "Basic" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "name",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "email",
+          "type" : "string",
+          "format" : "email",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "password",
+          "type" : "string",
+          "format" : "password",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "password_confirmation",
+          "type" : "string",
+          "format" : "password",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/AuthResponse"
+            }
+          }
+        }
+      }
+    },
+    "/login" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "登入",
+        "description" : "",
+        "security" : [ {
+          "Basic" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "email",
+          "type" : "string",
+          "format" : "email",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "password",
+          "type" : "string",
+          "format" : "password",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/AuthResponse"
+            }
+          },
+          "400" : {
+            "description" : "Noooo",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "id" : {
+                  "type" : "integer",
+                  "example" : 4
+                },
+                "rp" : {
+                  "$ref" : "#/definitions/AuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload" : {
+      "post" : {
+        "tags" : [ "Flower" ],
+        "summary" : "上傳花帖",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "image",
+          "type" : "file",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "top1",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "top2",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "top3",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "top4",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "top5",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "longitude",
+          "type" : "number",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "latitude",
+          "type" : "number",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "userChoose",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "source",
+          "type" : "string",
+          "required" : true,
+          "default" : "iOS",
+          "enum" : [ "iOS" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "result" ],
+              "properties" : {
+                "result" : {
+                  "type" : "string",
+                  "example" : "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plant/gps" : {
+      "get" : {
+        "tags" : [ "Plant" ],
+        "summary" : "地圖拿植物",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "plantID",
+          "type" : "integer",
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "userID",
+          "type" : "integer",
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "longitude",
+          "type" : "number",
+          "required" : true
+        }, {
+          "in" : "query",
+          "name" : "latitude",
+          "type" : "number",
+          "required" : true
+        }, {
+          "in" : "query",
+          "name" : "raidus",
+          "type" : "number",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "gpsRange", "showList" ],
+              "properties" : {
+                "gpsRange" : {
+                  "type" : "object",
+                  "required" : [ "minLat", "maxLat", "minLng", "maxLng" ],
+                  "properties" : {
+                    "minLat" : {
+                      "type" : "number"
+                    },
+                    "maxLat" : {
+                      "type" : "number"
+                    },
+                    "minLng" : {
+                      "type" : "number"
+                    },
+                    "maxLng" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "showList" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "required" : [ "userID", "plantID", "url", "longitude", "latitude" ],
+                    "properties" : {
+                      "userID" : {
+                        "type" : "integer"
+                      },
+                      "plantID" : {
+                        "type" : "integer"
+                      },
+                      "url" : {
+                        "type" : "string",
+                        "format" : "url"
+                      },
+                      "longitude" : {
+                        "type" : "number"
+                      },
+                      "latitude" : {
+                        "type" : "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plant/{id}/info" : {
+      "get" : {
+        "tags" : [ "Plant" ],
+        "summary" : "花知識",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "plantInfo" ],
+              "properties" : {
+                "plantInfo" : {
+                  "type" : "object",
+                  "required" : [ "plantID", "name", "enName" ],
+                  "properties" : {
+                    "plantID" : {
+                      "type" : "integer"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "enName" : {
+                      "type" : "string"
+                    },
+                    "info" : {
+                      "type" : "string"
+                    },
+                    "picList" : {
+                      "type" : "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment" : {
+      "post" : {
+        "tags" : [ "Flower" ],
+        "summary" : "花帖新增留言",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "postID",
+          "type" : "string"
+        }, {
+          "in" : "formData",
+          "name" : "message",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/post/{id}/comment" : {
+      "get" : {
+        "tags" : [ "Flower" ],
+        "summary" : "取得花帖的留言清單",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "showList" ],
+              "properties" : {
+                "showList" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "type" : "integer"
+                      },
+                      "useName" : {
+                        "type" : "string"
+                      },
+                      "avatar" : {
+                        "type" : "string"
+                      },
+                      "message" : {
+                        "type" : "string"
+                      },
+                      "createdTime" : {
+                        "type" : "string",
+                        "format" : "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/post/{id}" : {
+      "get" : {
+        "tags" : [ "Flower" ],
+        "summary" : "顯示單一花帖資訊",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "data", "owner" ],
+              "properties" : {
+                "data" : {
+                  "$ref" : "#/definitions/FlowerWall"
+                },
+                "owner" : {
+                  "type" : "string",
+                  "enum" : [ "yes", "no" ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/post/{id}/update" : {
+      "put" : {
+        "tags" : [ "Flower" ],
+        "summary" : "更新花帖",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "photograph",
+          "type" : "string"
+        }, {
+          "in" : "formData",
+          "name" : "longitude",
+          "type" : "number"
+        }, {
+          "in" : "formData",
+          "name" : "latitude",
+          "type" : "number"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/predict" : {
+      "post" : {
+        "tags" : [ "Predict" ],
+        "summary" : "辨識照片的API",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "image",
+          "type" : "file"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "predictions" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/Prediction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/info" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "使用者資訊",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "userInfo" : {
+                  "$ref" : "#/definitions/UserInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}/flower-wall" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "使用者花牆",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "data" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/FlowerWall"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flower-wall" : {
+      "get" : {
+        "tags" : [ "Flower" ],
+        "summary" : "公開花牆",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "data" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/FlowerWall"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collection" : {
+      "post" : {
+        "tags" : [ "Flower" ],
+        "summary" : "收藏花帖",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "postID",
+          "type" : "string",
+          "required" : true
+        } ],
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/collection" : {
+      "get" : {
+        "tags" : [ "Flower" ],
+        "summary" : "顯示使用者收藏清單",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "data" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "type" : "integer"
+                      },
+                      "url" : {
+                        "type" : "string",
+                        "format" : "url"
+                      },
+                      "photograph_at" : {
+                        "type" : "string",
+                        "format" : "date-time"
+                      },
+                      "plantName" : {
+                        "type" : "string"
+                      },
+                      "longitude" : {
+                        "type" : "number"
+                      },
+                      "latitude" : {
+                        "type" : "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collection/delete/{id}" : {
+      "delete" : {
+        "tags" : [ "Flower" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "summary" : "花帖收藏刪除",
+        "description" : "",
+        "responses" : {
+          "204" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/user/notification" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "通知列表",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "avatar" : {
+                    "type" : "string",
+                    "format" : "url"
+                  },
+                  "title" : {
+                    "type" : "string"
+                  },
+                  "createTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "isRead" : {
+                    "type" : "integer",
+                    "enum" : [ 0, 1 ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "Basic" : {
+      "type" : "basic"
+    },
+    "ApiToken" : {
+      "type" : "apiKey",
+      "in" : "header",
+      "name" : "Authorization"
+    }
+  },
+  "security" : [ {
+    "ApiToken" : [ ]
+  }, {
+    "Basic" : [ ]
+  } ]
+}
