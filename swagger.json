@@ -495,7 +495,7 @@
                       "id" : {
                         "type" : "integer"
                       },
-                      "useName" : {
+                      "userName" : {
                         "type" : "string"
                       },
                       "avatar" : {
@@ -504,7 +504,7 @@
                       "message" : {
                         "type" : "string"
                       },
-                      "createdTime" : {
+                      "createTime" : {
                         "type" : "string",
                         "format" : "date-time"
                       }
