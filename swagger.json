@@ -1,0 +1,705 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Cornsoup API",
+    "contact" : {
+      "email" : "arthurgau0419@gmail.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "User",
+    "description" : "使用者認證"
+  }, {
+    "name" : "Room/Client",
+    "description" : "使用者端"
+  }, {
+    "name" : "Room/Service",
+    "description" : "客服端"
+  }, {
+    "name" : "Note",
+    "description" : "備忘錄"
+  } ],
+  "consumes" : [ "application/x-www-form-urlencoded", "multipart/form-data" ],
+  "produces" : [ "application/json" ],
+  "responses" : {
+    "400" : {
+      "description" : "Another Error",
+      "schema" : {
+        "$ref" : "#/definitions/CornsoupError"
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "ApiToken" : {
+      "type" : "apiKey",
+      "in" : "header",
+      "name" : "access_token"
+    }
+  },
+  "security" : [ {
+    "ApiToken" : [ ]
+  } ],
+  "paths" : {
+    "/users/{phone_number}" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "使用phone_number取得使用者資訊",
+        "description" : "使用phone_number取得使用者資訊",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "phone_number",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "message", "user_id", "role", "first_name", "last_name" ],
+              "properties" : {
+                "message" : {
+                  "type" : "string"
+                },
+                "user_id" : {
+                  "type" : "integer"
+                },
+                "role" : {
+                  "type" : "string"
+                },
+                "first_name" : {
+                  "type" : "string"
+                },
+                "last_name" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "取得使用者資訊",
+        "description" : "取得使用者資訊",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "required" : [ "message", "user_id", "role", "email" ],
+              "properties" : {
+                "message" : {
+                  "type" : "string"
+                },
+                "user_id" : {
+                  "type" : "integer"
+                },
+                "email" : {
+                  "type" : "string"
+                },
+                "role" : {
+                  "type" : "string",
+                  "enum" : [ "user", "staff" ]
+                },
+                "first_name" : {
+                  "type" : "string"
+                },
+                "last_name" : {
+                  "type" : "string"
+                },
+                "phone_number" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/login" : {
+      "post" : {
+        "tags" : [ "User" ],
+        "security" : [ ],
+        "summary" : "登入",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "apn_sandbox",
+          "type" : "string",
+          "enum" : [ "development", "production" ],
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "email",
+          "type" : "string",
+          "format" : "email",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "password",
+          "type" : "string",
+          "format" : "password",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "device_type",
+          "type" : "string",
+          "enum" : [ "ios", "android" ],
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "device_token",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/LoginResponse"
+            }
+          },
+          "404" : {
+            "description" : "Another Error",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Error",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/logout" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "登出",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/rooms/call_customer_service" : {
+      "post" : {
+        "tags" : [ "Room/Client" ],
+        "summary" : "使用者撥打客服",
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/CallResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/answer" : {
+      "post" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "接受",
+        "description" : "",
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ServiceAnswerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/hangup" : {
+      "post" : {
+        "tags" : [ "Room/Service", "Room/Client" ],
+        "summary" : "掛斷",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "room_name",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/call_logs" : {
+      "get" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "通話紀錄",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/CallLogsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/missed_call" : {
+      "get" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "未接清單",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/MissedCallResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/call_back" : {
+      "post" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "回撥",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "user_id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/CallResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/user_answer" : {
+      "post" : {
+        "tags" : [ "Room/Client" ],
+        "summary" : "使用者接聽",
+        "description" : "",
+        "responses" : {
+          "201" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/notes/user_grouped" : {
+      "get" : {
+        "tags" : [ "Note" ],
+        "summary" : "顯示每個客戶的最後一則備忘錄列表",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/NotesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/notes" : {
+      "post" : {
+        "tags" : [ "Note" ],
+        "summary" : "新增備忘錄",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "user_id",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "note",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "message" : {
+                  "type" : "string"
+                },
+                "note" : {
+                  "$ref" : "#/definitions/Note"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "Note" ],
+        "summary" : "備忘錄列表（善用各種篩選）",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "user",
+          "description" : "客戶的id",
+          "type" : "integer"
+        }, {
+          "in" : "query",
+          "name" : "search",
+          "description" : "搜尋備忘錄內容",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/NotesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/notes/{id}" : {
+      "patch" : {
+        "tags" : [ "Note" ],
+        "summary" : "更新備忘錄",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "type" : "integer",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "note",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "message" : {
+                  "type" : "string"
+                },
+                "note" : {
+                  "$ref" : "#/definitions/Note"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "MessageResponse" : {
+      "type" : "object",
+      "required" : [ "message" ],
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "example" : "你好帥"
+        }
+      }
+    },
+    "CornsoupError" : {
+      "type" : "object",
+      "required" : [ "statusCode", "statusMessage" ],
+      "properties" : {
+        "statusCode" : {
+          "type" : "integer",
+          "example" : 400
+        },
+        "statusMessage" : {
+          "type" : "string",
+          "example" : "長太帥所以錯誤"
+        }
+      }
+    },
+    "LoginResponse" : {
+      "type" : "object",
+      "required" : [ "message", "user_id", "access_token", "account", "role" ],
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        },
+        "user_id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "access_token" : {
+          "type" : "string",
+          "example" : "AKLx3eE6u9ASsJC9wecd"
+        },
+        "account" : {
+          "type" : "string",
+          "example" : "user1@cornsoup.com"
+        },
+        "first_name" : {
+          "type" : "string",
+          "example" : "1234"
+        },
+        "last_name" : {
+          "type" : "string",
+          "example" : "5678"
+        },
+        "phone_number" : {
+          "type" : "string",
+          "example" : "123454"
+        },
+        "role" : {
+          "type" : "string",
+          "enum" : [ "user", "staff" ]
+        }
+      }
+    },
+    "CallResponse" : {
+      "type" : "object",
+      "properties" : {
+        "target_phone_number" : {
+          "type" : "string"
+        },
+        "api_key" : {
+          "type" : "string"
+        },
+        "room" : {
+          "$ref" : "#/definitions/Room"
+        }
+      }
+    },
+    "Room" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "ip" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "tokbox_token" : {
+          "type" : "string"
+        },
+        "tokbox_session" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        },
+        "device_token" : {
+          "type" : "string"
+        },
+        "device_type" : {
+          "type" : "string"
+        },
+        "room_type" : {
+          "type" : "string"
+        },
+        "room_display_name" : {
+          "type" : "string"
+        },
+        "room_member_count" : {
+          "type" : "integer"
+        },
+        "member_phone_numbers" : {
+          "type" : "string"
+        },
+        "unread_qty" : {
+          "type" : "integer"
+        },
+        "read_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ServiceAnswerResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        },
+        "room_name" : {
+          "type" : "string"
+        },
+        "user_id" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "MissedCallResponse" : {
+      "type" : "object",
+      "properties" : {
+        "syscode" : {
+          "type" : "integer"
+        },
+        "sysmsg" : {
+          "type" : "string"
+        },
+        "missed_call" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MissedCall"
+          }
+        }
+      }
+    },
+    "CallLogsResponse" : {
+      "type" : "object",
+      "required" : [ "syscode", "sysmsg", "call_logs" ],
+      "properties" : {
+        "syscode" : {
+          "type" : "integer"
+        },
+        "sysmsg" : {
+          "type" : "string"
+        },
+        "call_logs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CallLog"
+          }
+        }
+      }
+    },
+    "CallLog" : {
+      "type" : "object",
+      "required" : [ "room_id", "user_id", "name", "start_time", "talk_time" ],
+      "properties" : {
+        "room_id" : {
+          "type" : "integer"
+        },
+        "user_id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "start_time" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "talk_time" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MissedCall" : {
+      "type" : "object",
+      "required" : [ "room_id", "user_id", "times", "created_at" ],
+      "properties" : {
+        "room_id" : {
+          "type" : "integer"
+        },
+        "user_id" : {
+          "type" : "integer"
+        },
+        "user_name" : {
+          "type" : "string"
+        },
+        "times" : {
+          "type" : "integer"
+        },
+        "created_at" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "User" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "first_name" : {
+          "type" : "string",
+          "example" : "小春"
+        },
+        "last_name" : {
+          "type" : "string",
+          "example" : "陳"
+        }
+      }
+    },
+    "NotesResponse" : {
+      "type" : "object",
+      "required" : [ "message", "notes" ],
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        },
+        "notes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Note"
+          }
+        }
+      }
+    },
+    "Note" : {
+      "type" : "object",
+      "required" : [ "id", "staff_id", "user_id", "user", "note", "created_at" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : "1"
+        },
+        "staff_id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "user_id" : {
+          "type" : "integer",
+          "example" : 2
+        },
+        "user" : {
+          "$ref" : "#/definitions/User"
+        },
+        "note" : {
+          "type" : "string",
+          "example" : "醫師表示陳小春已經沒救了，家屬趕緊準備辦理後事吧"
+        },
+        "created_at" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-21T17:32:28Z"
+        }
+      }
+    }
+  },
+  "host" : "cornsoups-dev.herokuapp.com",
+  "basePath" : "/api/v1",
+  "schemes" : [ "http" ]
+}
