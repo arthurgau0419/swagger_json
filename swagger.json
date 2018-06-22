@@ -368,8 +368,11 @@
                   "type" : "array",
                   "items" : {
                     "type" : "object",
-                    "required" : [ "userID", "plantID", "url", "longitude", "latitude" ],
+                    "required" : [ "id", "userID", "plantID", "url", "longitude", "latitude" ],
                     "properties" : {
+                      "id" : {
+                        "type" : "integer"
+                      },
                       "userID" : {
                         "type" : "integer"
                       },
