@@ -1,6 +1,6 @@
 {
   "info" : {
-    "title" : "Flower API",
+    "title" : "花現植物辨識 API",
     "description" : "手寫但是可以直接拿來Codegen的API",
     "version" : "1.0.0"
   },
