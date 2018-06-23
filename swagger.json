@@ -1,6 +1,7 @@
 {
   "info" : {
     "title" : "Flower API",
+    "description" : "手寫但是可以直接拿來Codegen的API",
     "version" : "1.0.0"
   },
   "swagger" : "2.0",
