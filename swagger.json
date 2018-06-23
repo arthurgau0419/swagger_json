@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "This is a simple API",
+    "description" : "手寫但是可以直接拿來Codegen的CornsoupAPI",
     "version" : "1.0.0",
     "title" : "Cornsoup API",
     "contact" : {
