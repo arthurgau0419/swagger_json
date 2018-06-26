@@ -677,6 +677,17 @@
           "type" : "string",
           "enum" : [ "postTime", "photoAsk", "collection", "comment" ],
           "required" : false
+        }, {
+          "in" : "query",
+          "name" : "rangeType",
+          "type" : "string",
+          "enum" : [ "all", "threeMonth", "sixMonth", "lastYear" ],
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "search",
+          "type" : "string",
+          "required" : false
         } ],
         "description" : "",
         "responses" : {
