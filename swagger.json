@@ -224,6 +224,27 @@
         }
       }
     },
+    "/rooms/reject" : {
+      "post" : {
+        "tags" : [ "Room/Service", "Room/Client" ],
+        "summary" : "拒絕通話",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "room_name",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
     "/rooms/hangup" : {
       "post" : {
         "tags" : [ "Room/Service", "Room/Client" ],
