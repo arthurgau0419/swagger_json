@@ -671,6 +671,13 @@
       "get" : {
         "tags" : [ "Flower" ],
         "summary" : "公開花牆",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "orderType",
+          "type" : "string",
+          "enum" : [ "postTime", "photoAsk", "collection", "comment" ],
+          "required" : false
+        } ],
         "description" : "",
         "responses" : {
           "200" : {
