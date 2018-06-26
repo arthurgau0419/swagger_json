@@ -339,6 +339,12 @@
           "name" : "raidus",
           "type" : "number",
           "required" : true
+        }, {
+          "in" : "query",
+          "name" : "filterType",
+          "type" : "string",
+          "enum" : [ "photoAsk", "collection", "comment" ],
+          "required" : false
         } ],
         "responses" : {
           "200" : {
