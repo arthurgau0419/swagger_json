@@ -688,7 +688,8 @@
           "name" : "rangeType",
           "type" : "string",
           "enum" : [ "all", "threeMonth", "sixMonth", "lastYear" ],
-          "required" : false
+          "default" : "all",
+          "required" : true
         }, {
           "in" : "query",
           "name" : "search",
