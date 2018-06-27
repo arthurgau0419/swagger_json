@@ -345,6 +345,24 @@
           "type" : "string",
           "enum" : [ "photoAsk", "collection", "comment" ],
           "required" : false
+        }, {
+          "in" : "query",
+          "name" : "rangeType",
+          "type" : "string",
+          "enum" : [ "all", "threeMonth", "sixMonth", "lastYear" ],
+          "default" : "all",
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "search",
+          "type" : "string",
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "collection",
+          "type" : "integer",
+          "enum" : [ 1 ],
+          "required" : false
         } ],
         "responses" : {
           "200" : {
