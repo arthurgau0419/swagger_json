@@ -689,7 +689,7 @@
           "type" : "string",
           "enum" : [ "all", "threeMonth", "sixMonth", "lastYear" ],
           "default" : "all",
-          "required" : true
+          "required" : false
         }, {
           "in" : "query",
           "name" : "search",
