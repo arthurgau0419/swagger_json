@@ -834,28 +834,29 @@
               "type" : "object",
               "required" : [ "data" ],
               "properties" : {
-                "data" : null,
-                "type" : "array",
-                "items" : {
-                  "type" : "object",
-                  "properties" : {
-                    "id" : {
-                      "type" : "integer"
-                    },
-                    "avatar" : {
-                      "type" : "string",
-                      "format" : "url"
-                    },
-                    "title" : {
-                      "type" : "string"
-                    },
-                    "createTime" : {
-                      "type" : "string",
-                      "format" : "date-time"
-                    },
-                    "isRead" : {
-                      "type" : "integer",
-                      "enum" : [ 0, 1 ]
+                "data" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "type" : "integer"
+                      },
+                      "avatar" : {
+                        "type" : "string",
+                        "format" : "url"
+                      },
+                      "title" : {
+                        "type" : "string"
+                      },
+                      "createTime" : {
+                        "type" : "string",
+                        "format" : "date-time"
+                      },
+                      "isRead" : {
+                        "type" : "integer",
+                        "enum" : [ 0, 1 ]
+                      }
                     }
                   }
                 }
