@@ -248,27 +248,27 @@
           "in" : "formData",
           "name" : "top1",
           "type" : "integer",
-          "required" : true
+          "required" : false
         }, {
           "in" : "formData",
           "name" : "top2",
           "type" : "integer",
-          "required" : true
+          "required" : false
         }, {
           "in" : "formData",
           "name" : "top3",
           "type" : "integer",
-          "required" : true
+          "required" : false
         }, {
           "in" : "formData",
           "name" : "top4",
           "type" : "integer",
-          "required" : true
+          "required" : false
         }, {
           "in" : "formData",
           "name" : "top5",
           "type" : "integer",
-          "required" : true
+          "required" : false
         }, {
           "in" : "formData",
           "name" : "longitude",
