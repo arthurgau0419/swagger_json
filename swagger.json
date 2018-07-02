@@ -248,7 +248,8 @@
         "properties" : {
           "code" : {
             "type" : "string",
-            "example" : 5487
+            "example" : 5487,
+            "default" : 0
           },
           "message" : {
             "type" : "string",
