@@ -296,6 +296,29 @@
         }
       }
     },
+    "/rooms/call" : {
+      "get" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "通話紀錄（已接、未接都放在一起）",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "calls" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/Call"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/rooms/call_back" : {
       "post" : {
         "tags" : [ "Room/Service" ],
@@ -631,6 +654,31 @@
         },
         "talk_time" : {
           "type" : "string"
+        }
+      }
+    },
+    "Call" : {
+      "type" : "object",
+      "required" : [ "room_id", "user_id", "start_time", "talk_time", "user" ],
+      "properties" : {
+        "room_id" : {
+          "type" : "integer"
+        },
+        "user_id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "start_time" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "talk_time" : {
+          "type" : "string"
+        },
+        "user" : {
+          "$ref" : "#/definitions/User"
         }
       }
     },
