@@ -109,7 +109,7 @@
         "tags" : [ "talk" ],
         "summary" : "聊天室列表",
         "operationId" : "createRoom",
-        "description" : "建立聊天室，建立的人會直接成為聊天室成員\n",
+        "description" : "聊天室列表，支援分頁查詢\n",
         "parameters" : [ {
           "in" : "path",
           "name" : "vender",
@@ -118,6 +118,13 @@
           },
           "required" : true,
           "description" : "WebRTC供應商"
+        }, {
+          "in" : "query",
+          "name" : "pagination",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/Pagination"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -126,7 +133,7 @@
               "application/json" : {
                 "schema" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/Pagination"
+                    "$ref" : "#/components/schemas/PaginationResult"
                   }, {
                     "type" : "object",
                     "properties" : {
@@ -193,6 +200,21 @@
         "enum" : [ "tokbox", "skyway" ]
       },
       "Pagination" : {
+        "type" : "object",
+        "properties" : {
+          "page_size" : {
+            "type" : "integer",
+            "default" : 100,
+            "example" : 100
+          },
+          "page" : {
+            "type" : "integer",
+            "default" : 0,
+            "example" : 0
+          }
+        }
+      },
+      "PaginationResult" : {
         "type" : "object",
         "required" : [ "count", "page", "results" ],
         "properties" : {
