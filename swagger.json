@@ -230,7 +230,8 @@
           "required" : [ "session_id", "session_token" ],
           "properties" : {
             "session_id" : {
-              "type" : "string"
+              "type" : "string",
+              "example" : "session_id"
             },
             "session_token" : {
               "type" : "string"
