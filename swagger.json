@@ -218,7 +218,8 @@
         "required" : [ "id" ],
         "properties" : {
           "id" : {
-            "type" : "integer"
+            "type" : "integer",
+            "example" : 1
           }
         }
       },
@@ -231,10 +232,11 @@
           "properties" : {
             "session_id" : {
               "type" : "string",
-              "example" : "adsadfdfadjlsd"
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
             },
             "session_token" : {
-              "type" : "string"
+              "type" : "string",
+              "example" : "ergv63rmv2Lma"
             }
           }
         } ]
