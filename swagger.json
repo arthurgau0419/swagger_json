@@ -157,14 +157,44 @@
     }
   },
   "components" : {
+    "responses" : {
+      "NotFound" : {
+        "description" : "The specified resource was not found",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized" : {
+        "description" : "Unauthorized",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
     "schemas" : {
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          }
+        }
+      },
       "TalkVender" : {
         "type" : "string",
         "enum" : [ "tokbox", "skyway" ]
       },
       "Pagination" : {
         "type" : "object",
-        "required" : [ "count" ],
+        "required" : [ "count", "results" ],
         "properties" : {
           "count" : {
             "type" : "integer"
@@ -176,6 +206,10 @@
           "previous" : {
             "type" : "string",
             "format" : "url"
+          },
+          "results" : {
+            "type" : "array",
+            "items" : { }
           }
         }
       },
