@@ -216,13 +216,9 @@
       },
       "PaginationResult" : {
         "type" : "object",
-        "required" : [ "count", "page", "results" ],
+        "required" : [ "count", "results" ],
         "properties" : {
           "count" : {
-            "type" : "integer",
-            "minimum" : 0
-          },
-          "page" : {
             "type" : "integer",
             "minimum" : 0
           },
