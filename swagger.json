@@ -184,6 +184,9 @@
           "description" : "聊天室 id"
         } ],
         "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
           "401" : {
             "$ref" : "#/components/responses/Unauthorized"
           },
