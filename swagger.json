@@ -35,20 +35,14 @@
   } ],
   "paths" : {
     "/talk/{vender}/rooms" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/talk_vender"
+      } ],
       "post" : {
         "tags" : [ "talk" ],
         "summary" : "建立聊天室",
         "operationId" : "createRoom",
         "description" : "建立聊天室，建立的人會直接成為聊天室成員\n",
-        "parameters" : [ {
-          "in" : "path",
-          "name" : "vender",
-          "schema" : {
-            "$ref" : "#/components/schemas/TalkVender"
-          },
-          "required" : true,
-          "description" : "WebRTC供應商"
-        } ],
         "requestBody" : {
           "description" : "初始成員 *(選填)*",
           "required" : false,
@@ -111,14 +105,6 @@
         "operationId" : "createRoom",
         "description" : "聊天室列表，支援分頁查詢\n",
         "parameters" : [ {
-          "in" : "path",
-          "name" : "vender",
-          "schema" : {
-            "$ref" : "#/components/schemas/TalkVender"
-          },
-          "required" : true,
-          "description" : "WebRTC供應商"
-        }, {
           "$ref" : "#/components/parameters/page"
         }, {
           "$ref" : "#/components/parameters/page_size"
@@ -162,18 +148,13 @@
       }
     },
     "/talk/{vender}/rooms/{id}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/talk_vender"
+      } ],
       "delete" : {
         "tags" : [ "talk" ],
         "summary" : "刪除聊天室",
         "parameters" : [ {
-          "in" : "path",
-          "name" : "vender",
-          "schema" : {
-            "$ref" : "#/components/schemas/TalkVender"
-          },
-          "required" : true,
-          "description" : "WebRTC供應商"
-        }, {
           "in" : "path",
           "name" : "id",
           "schema" : {
@@ -198,6 +179,15 @@
   },
   "components" : {
     "parameters" : {
+      "talk_vender" : {
+        "in" : "path",
+        "name" : "vender",
+        "schema" : {
+          "$ref" : "#/components/schemas/TalkVender"
+        },
+        "required" : true,
+        "description" : "WebRTC供應商"
+      },
       "pagination" : {
         "in" : "query",
         "name" : "pagination",
