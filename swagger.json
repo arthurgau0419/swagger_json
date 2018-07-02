@@ -127,6 +127,20 @@
                 "schema" : {
                   "allOf" : [ {
                     "$ref" : "#/components/schemas/Pagination"
+                  }, {
+                    "type" : "object",
+                    "properties" : {
+                      "results" : {
+                        "type" : "array",
+                        "items" : {
+                          "oneOf" : [ {
+                            "$ref" : "#/components/schemas/TokboxRoom"
+                          }, {
+                            "$ref" : "#/components/schemas/SkywayRoom"
+                          } ]
+                        }
+                      }
+                    }
                   } ]
                 }
               }
