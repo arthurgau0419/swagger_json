@@ -119,12 +119,11 @@
           "required" : true,
           "description" : "WebRTC供應商"
         }, {
-          "in" : "query",
-          "name" : "pagination",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/components/schemas/Pagination"
-          }
+          "$ref" : "#/components/parameters/page"
+        }, {
+          "$ref" : "#/components/parameters/page_size"
+        }, {
+          "$ref" : "#/components/parameters/pagination"
         } ],
         "responses" : {
           "200" : {
@@ -198,6 +197,38 @@
     }
   },
   "components" : {
+    "parameters" : {
+      "pagination" : {
+        "in" : "query",
+        "name" : "pagination",
+        "required" : false,
+        "schema" : {
+          "$ref" : "#/components/schemas/Pagination"
+        }
+      },
+      "page" : {
+        "in" : "query",
+        "name" : "page",
+        "required" : false,
+        "schema" : {
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "description" : "The number of items to skip before starting to collect the result set."
+      },
+      "page_size" : {
+        "in" : "query",
+        "name" : "page_size",
+        "required" : false,
+        "schema" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 50,
+          "default" : 20
+        },
+        "description" : "The numbers of items to return."
+      }
+    },
     "responses" : {
       "NotFound" : {
         "description" : "The specified resource was not found",
