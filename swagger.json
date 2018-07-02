@@ -737,6 +737,10 @@
         "last_name" : {
           "type" : "string",
           "example" : "陳"
+        },
+        "rold" : {
+          "type" : "string",
+          "enum" : [ "user", "staff" ]
         }
       }
     },
