@@ -194,10 +194,15 @@
       },
       "Pagination" : {
         "type" : "object",
-        "required" : [ "count", "results" ],
+        "required" : [ "count", "page", "results" ],
         "properties" : {
           "count" : {
-            "type" : "integer"
+            "type" : "integer",
+            "minimum" : 0
+          },
+          "page" : {
+            "type" : "integer",
+            "minimum" : 0
           },
           "next" : {
             "type" : "string",
