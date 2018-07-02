@@ -1,0 +1,271 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/LarvataTW/LarvataTalk/1.0.0"
+  }, {
+    "description" : "ruby",
+    "url" : "https://abc.com"
+  } ],
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Simple Inventory API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "talk",
+    "description" : "通話模組",
+    "externalDocs" : {
+      "description" : "link",
+      "url" : "some_link"
+    }
+  }, {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/talk/{vender}/rooms" : {
+      "post" : {
+        "tags" : [ "talk" ],
+        "summary" : "建立聊天室",
+        "operationId" : "createRoom",
+        "description" : "建立聊天室，建立的人會直接成為聊天室成員\n",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "vender",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "tokbox", "skyway" ]
+          },
+          "required" : true,
+          "description" : "WebRTC供應商"
+        } ],
+        "requestBody" : {
+          "description" : "初始成員 *(選填)*",
+          "required" : false,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "users" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "users" : {
+                    "type" : "string",
+                    "example" : "1,2,3"
+                  }
+                }
+              }
+            },
+            "text/plain" : {
+              "schema" : {
+                "type" : "string",
+                "example" : "users=1,2,3"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "成功建立聊天室",
+            "content" : {
+              "application/xml" : {
+                "schema" : {
+                  "oneOf" : [ {
+                    "$ref" : "#/components/schemas/TokboxRoom"
+                  }, {
+                    "$ref" : "#/components/schemas/SkywayRoom"
+                  } ]
+                }
+              },
+              "text/plain" : {
+                "schema" : {
+                  "oneOf" : [ {
+                    "$ref" : "#/components/schemas/TokboxRoom"
+                  }, {
+                    "$ref" : "#/components/schemas/SkywayRoom"
+                  } ]
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "oneOf" : [ {
+                    "$ref" : "#/components/schemas/TokboxRoom"
+                  }, {
+                    "$ref" : "#/components/schemas/SkywayRoom"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "talk" ],
+        "summary" : "聊天室列表",
+        "operationId" : "createRoom",
+        "description" : "建立聊天室，建立的人會直接成為聊天室成員\n",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "vender",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "tokbox", "skyway" ]
+          },
+          "required" : true,
+          "description" : "WebRTC供應商"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "成功取回聊天室列表",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "oneOf" : [ {
+                      "$ref" : "#/components/schemas/TokboxRoom"
+                    }, {
+                      "$ref" : "#/components/schemas/SkywayRoom"
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Pagination" : {
+        "type" : "object",
+        "required" : [ "count" ],
+        "properties" : {
+          "count" : {
+            "type" : "integer"
+          },
+          "next" : {
+            "type" : "string",
+            "format" : "url"
+          },
+          "previous" : {
+            "type" : "string",
+            "format" : "url"
+          }
+        }
+      },
+      "User" : {
+        "type" : "object",
+        "required" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Room" : {
+        "type" : "object",
+        "required" : [ "id" ],
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "TokboxRoom" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Room"
+        }, {
+          "type" : "object",
+          "required" : [ "session_id", "session_token" ],
+          "properties" : {
+            "session_id" : {
+              "type" : "string"
+            },
+            "session_token" : {
+              "type" : "string"
+            }
+          }
+        } ]
+      },
+      "SkywayRoom" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Room"
+        }, {
+          "type" : "object",
+          "required" : [ "room_id" ],
+          "properties" : {
+            "room_id" : {
+              "type" : "string"
+            }
+          }
+        } ]
+      },
+      "InventoryItem" : {
+        "type" : "object",
+        "required" : [ "id", "name", "manufacturer", "releaseDate" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "releaseDate" : {
+            "type" : "string",
+            "format" : "int32",
+            "example" : "2016-08-29T09:12:33.001Z"
+          },
+          "manufacturer" : {
+            "$ref" : "#/components/schemas/Manufacturer"
+          }
+        }
+      },
+      "Manufacturer" : {
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "ACME Corporation"
+          },
+          "homePage" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "https://www.acme-corp.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "408-867-5309"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  }
+}
