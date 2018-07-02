@@ -659,7 +659,7 @@
     },
     "Call" : {
       "type" : "object",
-      "required" : [ "room_id", "user_id", "start_time", "talk_time", "user" ],
+      "required" : [ "room_id", "user_id", "name", "start_time", "talk_time", "user", "missed" ],
       "properties" : {
         "room_id" : {
           "type" : "integer"
@@ -679,6 +679,9 @@
         },
         "user" : {
           "$ref" : "#/definitions/User"
+        },
+        "missed" : {
+          "type" : "boolean"
         }
       }
     },
