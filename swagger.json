@@ -161,6 +161,37 @@
           }
         }
       }
+    },
+    "/talk/{vender}/rooms/{id}" : {
+      "delete" : {
+        "tags" : [ "talk" ],
+        "summary" : "刪除聊天室",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "vender",
+          "schema" : {
+            "$ref" : "#/components/schemas/TalkVender"
+          },
+          "required" : true,
+          "description" : "WebRTC供應商"
+        }, {
+          "in" : "path",
+          "name" : "id",
+          "schema" : {
+            "type" : "integer"
+          },
+          "required" : true,
+          "description" : "聊天室 id"
+        } ],
+        "responses" : {
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "components" : {
