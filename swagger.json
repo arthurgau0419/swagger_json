@@ -301,6 +301,19 @@
         "tags" : [ "Room/Service" ],
         "summary" : "通話紀錄（已接、未接都放在一起）",
         "description" : "",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page",
+          "type" : "integer",
+          "description" : "頁數",
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "qty",
+          "type" : "integer",
+          "description" : "筆數",
+          "required" : false
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
