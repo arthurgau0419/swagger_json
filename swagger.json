@@ -249,7 +249,8 @@
           "required" : [ "room_id" ],
           "properties" : {
             "room_id" : {
-              "type" : "string"
+              "type" : "string",
+              "example" : "5478-1748"
             }
           }
         } ]
