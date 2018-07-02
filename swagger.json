@@ -89,24 +89,6 @@
           "201" : {
             "description" : "成功建立聊天室",
             "content" : {
-              "application/xml" : {
-                "schema" : {
-                  "oneOf" : [ {
-                    "$ref" : "#/components/schemas/TokboxRoom"
-                  }, {
-                    "$ref" : "#/components/schemas/SkywayRoom"
-                  } ]
-                }
-              },
-              "text/plain" : {
-                "schema" : {
-                  "oneOf" : [ {
-                    "$ref" : "#/components/schemas/TokboxRoom"
-                  }, {
-                    "$ref" : "#/components/schemas/SkywayRoom"
-                  } ]
-                }
-              },
               "application/json" : {
                 "schema" : {
                   "oneOf" : [ {
