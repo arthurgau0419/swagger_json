@@ -738,7 +738,7 @@
           "type" : "string",
           "example" : "陳"
         },
-        "rold" : {
+        "role" : {
           "type" : "string",
           "enum" : [ "user", "staff" ]
         }
