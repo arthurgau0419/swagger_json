@@ -231,14 +231,11 @@
           "properties" : {
             "session_id" : {
               "type" : "string",
-              "example" : "session_id"
+              "example" : "adsadfdfadjlsd"
             },
             "session_token" : {
               "type" : "string"
             }
-          },
-          "example" : {
-            "session_id" : "adsadfdfadjlsd"
           }
         } ]
       },
