@@ -64,12 +64,6 @@
                   }
                 }
               }
-            },
-            "text/plain" : {
-              "schema" : {
-                "type" : "string",
-                "example" : "users=1,2,3"
-              }
             }
           }
         },
@@ -175,6 +169,104 @@
         "responses" : {
           "204" : {
             "description" : "No Content"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/talk/{vender}/rooms/{id}/members/add" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/rtc_vender"
+      }, {
+        "$ref" : "#/components/parameters/resource_id"
+      } ],
+      "post" : {
+        "tags" : [ "talk" ],
+        "summary" : "加入成員進入聊天室",
+        "requestBody" : {
+          "description" : "要加入的成員",
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "user" : {
+                    "$ref" : "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "user" : {
+                    "type" : "integer",
+                    "example" : 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "成功"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/talk/{vender}/rooms/{id}/members/lemove" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/rtc_vender"
+      }, {
+        "$ref" : "#/components/parameters/resource_id"
+      } ],
+      "post" : {
+        "tags" : [ "talk" ],
+        "summary" : "從聊天室移除成員",
+        "requestBody" : {
+          "description" : "要移除的成員",
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "user" : {
+                    "$ref" : "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "user" : {
+                    "type" : "integer",
+                    "example" : 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "成功"
           },
           "401" : {
             "$ref" : "#/components/responses/Unauthorized"
