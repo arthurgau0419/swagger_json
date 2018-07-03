@@ -30,7 +30,7 @@
   "paths" : {
     "/talk/{vender}/rooms" : {
       "parameters" : [ {
-        "$ref" : "#/components/parameters/talk_vender"
+        "$ref" : "#/components/parameters/rtc_vender"
       } ],
       "post" : {
         "tags" : [ "talk" ],
@@ -143,20 +143,41 @@
     },
     "/talk/{vender}/rooms/{id}" : {
       "parameters" : [ {
-        "$ref" : "#/components/parameters/talk_vender"
+        "$ref" : "#/components/parameters/rtc_vender"
+      }, {
+        "in" : "path",
+        "name" : "id",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true,
+        "description" : "聊天室 id"
       } ],
+      "get" : {
+        "tags" : [ "talk" ],
+        "summary" : "聊天室",
+        "responses" : {
+          "200" : {
+            "description" : "成功取回聊天室",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Room"
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/NotFound"
+          }
+        }
+      },
       "delete" : {
         "tags" : [ "talk" ],
         "summary" : "刪除聊天室",
-        "parameters" : [ {
-          "in" : "path",
-          "name" : "id",
-          "schema" : {
-            "type" : "integer"
-          },
-          "required" : true,
-          "description" : "聊天室 id"
-        } ],
         "responses" : {
           "204" : {
             "description" : "No Content"
@@ -173,11 +194,11 @@
   },
   "components" : {
     "parameters" : {
-      "talk_vender" : {
+      "rtc_vender" : {
         "in" : "path",
         "name" : "vender",
         "schema" : {
-          "$ref" : "#/components/schemas/TalkVender"
+          "$ref" : "#/components/schemas/RTCVender"
         },
         "required" : true,
         "description" : "WebRTC供應商"
@@ -250,7 +271,7 @@
           }
         }
       },
-      "TalkVender" : {
+      "RTCVender" : {
         "type" : "string",
         "enum" : [ "tokbox", "skyway" ]
       },
