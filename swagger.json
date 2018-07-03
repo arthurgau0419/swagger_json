@@ -4,13 +4,13 @@
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/LarvataTW/LarvataTalk/1.0.0"
   }, {
-    "description" : "ruby",
-    "url" : "https://abc.com"
+    "description" : "Some Rails Server",
+    "url" : "http://heroku.notnow.com/api/v1"
   } ],
   "info" : {
     "description" : "This is a simple API",
     "version" : "1.0.0",
-    "title" : "Simple Inventory API",
+    "title" : "Larvata Talk API",
     "contact" : {
       "email" : "you@your-company.com"
     },
@@ -26,12 +26,6 @@
       "description" : "link",
       "url" : "some_link"
     }
-  }, {
-    "name" : "admins",
-    "description" : "Secured Admin-only calls"
-  }, {
-    "name" : "developers",
-    "description" : "Operations available to regular developers"
   } ],
   "paths" : {
     "/talk/{vender}/rooms" : {
