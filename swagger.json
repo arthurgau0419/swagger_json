@@ -397,6 +397,7 @@
     },
     "schemas" : {
       "Error" : {
+        "description" : "通用錯誤格式",
         "type" : "object",
         "required" : [ "code" ],
         "properties" : {
@@ -411,10 +412,12 @@
         }
       },
       "RTCVender" : {
+        "description" : "WebRTC供應商",
         "type" : "string",
         "enum" : [ "tokbox", "skyway" ]
       },
       "Pagination" : {
+        "description" : "分頁控制參數",
         "type" : "object",
         "properties" : {
           "page_size" : {
@@ -430,6 +433,7 @@
         }
       },
       "PaginationResult" : {
+        "description" : "分頁控制回傳容器",
         "type" : "object",
         "required" : [ "count", "results" ],
         "properties" : {
@@ -452,6 +456,7 @@
         }
       },
       "User" : {
+        "description" : "使用者",
         "type" : "object",
         "required" : [ "id", "display_name" ],
         "properties" : {
@@ -464,6 +469,7 @@
         }
       },
       "Room" : {
+        "description" : "聊天室",
         "type" : "object",
         "required" : [ "id", "members" ],
         "properties" : {
@@ -480,6 +486,7 @@
         }
       },
       "TokboxRoom" : {
+        "description" : "Tokbox 聊天室",
         "allOf" : [ {
           "$ref" : "#/components/schemas/Room"
         }, {
@@ -501,6 +508,7 @@
         } ]
       },
       "SkywayRoom" : {
+        "description" : "Skyway 聊天室",
         "allOf" : [ {
           "$ref" : "#/components/schemas/Room"
         }, {
