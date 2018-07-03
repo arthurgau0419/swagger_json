@@ -376,10 +376,6 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/Error"
-            },
-            "example" : {
-              "code" : "NotFound",
-              "message" : "哎呀，找不到...."
             }
           }
         }
@@ -399,13 +395,15 @@
       "Error" : {
         "description" : "通用錯誤格式",
         "type" : "object",
-        "required" : [ "code" ],
+        "required" : [ "code", "message" ],
         "properties" : {
           "code" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "custom_error_code"
           },
           "message" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "custom_reason"
           }
         }
       },
