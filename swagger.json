@@ -376,6 +376,10 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/Error"
+            },
+            "example" : {
+              "code" : "NotFound",
+              "message" : "哎呀，找不到...."
             }
           }
         }
@@ -398,12 +402,10 @@
         "required" : [ "code" ],
         "properties" : {
           "code" : {
-            "type" : "string",
-            "example" : 5487
+            "type" : "string"
           },
           "message" : {
-            "type" : "string",
-            "example" : "我太帥"
+            "type" : "string"
           }
         }
       },
