@@ -490,12 +490,12 @@
             "session_id" : {
               "description" : "An OpenTok Seenssion ID",
               "type" : "string",
-              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+              "example" : "2_MX40NTYzODkyMn5-MTUzMDU5OTY5MTEwMn42akp2L0JxZ0RUK202YlZNWklPWmU5YmN-fg"
             },
             "token" : {
+              "description" : "OpenTok session token for client. ⚠️ <span style=\"color:red\">**One client one token!**</span> ⚠️",
               "type" : "string",
-              "example" : "ergv63rmv2Lma",
-              "description" : "OpenTok session token for client. ⚠️ <span style=\"color:red\">**One client one token!**</span> ⚠️"
+              "example" : "T1==cGFydG5lcl9pZD00NTYzODkyMiZzZGtfdmVyc2lvbj1kZWJ1Z2dlciZzaWc9ZWFmZDllNTdmM2RiNGI0YTk1ZjE0NzNhZmVmNzFmNzFiOTZjYmE1MDpzZXNzaW9uX2lkPTJfTVg0ME5UWXpPRGt5TW41LU1UVXpNRFU1T1RZNU1URXdNbjQyYWtwMkwwSnhaMFJVSzIwMllsWk5Xa2xQV21VNVltTi1mZyZjcmVhdGVfdGltZT0xNTMwNTk5NjkxJnJvbGU9bW9kZXJhdG9yJm5vbmNlPTE1MzA1OTk2OTEuMTEyNTk4NDQ0MzY2NCZleHBpcmVfdGltZT0xNTMzMTkxNjkx"
             }
           }
         } ]
