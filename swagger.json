@@ -12,11 +12,7 @@
     "version" : "1.0.0",
     "title" : "Larvata Talk API",
     "contact" : {
-      "email" : "you@your-company.com"
-    },
-    "license" : {
-      "name" : "Apache 2.0",
-      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "email" : "arthurgau0419@gmail.com"
     }
   },
   "tags" : [ {
