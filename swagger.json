@@ -484,7 +484,7 @@
           "$ref" : "#/components/schemas/Room"
         }, {
           "type" : "object",
-          "description" : "[OpenTok 說明](https://tokbox.com/developer/guides/basics/)",
+          "description" : "[OpenTok spec here](https://tokbox.com/developer/guides/basics/)",
           "required" : [ "session_id", "token" ],
           "properties" : {
             "session_id" : {
