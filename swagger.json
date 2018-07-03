@@ -8,7 +8,7 @@
     "url" : "http://heroku.notnow.com/api/v1"
   } ],
   "info" : {
-    "description" : "This is a simple API",
+    "description" : "This is a simple API with Auto Mocking Plugin",
     "version" : "1.0.0",
     "title" : "Larvata Talk API",
     "contact" : {
