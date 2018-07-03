@@ -141,6 +141,9 @@
         },
         "messageCount" : {
           "type" : "integer"
+        },
+        "isCollection" : {
+          "type" : "boolean"
         }
       }
     }
