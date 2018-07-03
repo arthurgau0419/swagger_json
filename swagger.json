@@ -293,20 +293,29 @@
       },
       "User" : {
         "type" : "object",
-        "required" : [ "id" ],
+        "required" : [ "id", "display_name" ],
         "properties" : {
           "id" : {
             "type" : "integer"
+          },
+          "display_name" : {
+            "type" : "string"
           }
         }
       },
       "Room" : {
         "type" : "object",
-        "required" : [ "id" ],
+        "required" : [ "id", "members" ],
         "properties" : {
           "id" : {
             "type" : "integer",
             "example" : 1
+          },
+          "members" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            }
           }
         }
       },
