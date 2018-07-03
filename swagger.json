@@ -482,12 +482,11 @@
         }
       },
       "TokboxRoom" : {
-        "description" : "Tokbox 聊天室",
         "allOf" : [ {
           "$ref" : "#/components/schemas/Room"
         }, {
           "type" : "object",
-          "description" : "[OpenTok spec here](https://tokbox.com/developer/guides/basics/)",
+          "description" : "Check [OpenTok](https://tokbox.com/developer/guides/basics/) spec here.",
           "required" : [ "session_id", "token" ],
           "properties" : {
             "session_id" : {
@@ -504,12 +503,11 @@
         } ]
       },
       "SkywayRoom" : {
-        "description" : "Skyway 聊天室",
         "allOf" : [ {
           "$ref" : "#/components/schemas/Room"
         }, {
           "type" : "object",
-          "description" : "[SkyWay spec here](https://webrtc.ecl.ntt.com/en/communication-model.html)",
+          "description" : "Check [SkyWay](https://webrtc.ecl.ntt.com/en/communication-model.html) spec here.",
           "required" : [ "room_name" ],
           "properties" : {
             "room_name" : {
