@@ -505,6 +505,7 @@
           "$ref" : "#/components/schemas/Room"
         }, {
           "type" : "object",
+          "description" : "[SkyWay spec here](https://webrtc.ecl.ntt.com/en/communication-model.html)",
           "required" : [ "room_name" ],
           "properties" : {
             "room_name" : {
