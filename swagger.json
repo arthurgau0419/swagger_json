@@ -145,13 +145,7 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/rtc_vender"
       }, {
-        "in" : "path",
-        "name" : "id",
-        "schema" : {
-          "type" : "integer"
-        },
-        "required" : true,
-        "description" : "聊天室 id"
+        "$ref" : "#/components/parameters/resource_id"
       } ],
       "get" : {
         "tags" : [ "talk" ],
@@ -190,6 +184,50 @@
           }
         }
       }
+    },
+    "/talk/{vender}/rooms/{id}/members/join" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/rtc_vender"
+      }, {
+        "$ref" : "#/components/parameters/resource_id"
+      } ],
+      "post" : {
+        "tags" : [ "talk" ],
+        "summary" : "成員進入聊天室",
+        "responses" : {
+          "200" : {
+            "description" : "成功"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/talk/{vender}/rooms/{id}/members/leave" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/rtc_vender"
+      }, {
+        "$ref" : "#/components/parameters/resource_id"
+      } ],
+      "post" : {
+        "tags" : [ "talk" ],
+        "summary" : "成員離開聊天室",
+        "responses" : {
+          "200" : {
+            "description" : "成功"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -202,6 +240,15 @@
         },
         "required" : true,
         "description" : "WebRTC供應商"
+      },
+      "resource_id" : {
+        "in" : "path",
+        "name" : "id",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true,
+        "description" : "Rresource Identifier"
       },
       "pagination" : {
         "in" : "query",
