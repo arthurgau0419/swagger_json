@@ -502,11 +502,13 @@
           "$ref" : "#/components/schemas/Room"
         }, {
           "type" : "object",
-          "required" : [ "room_id" ],
+          "required" : [ "room_name" ],
           "properties" : {
-            "room_id" : {
+            "room_name" : {
+              "description" : "An unique room name for skyway room.",
               "type" : "string",
-              "example" : "5478-1748"
+              "format" : "uuid",
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
             }
           }
         } ]
