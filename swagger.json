@@ -484,7 +484,8 @@
           "$ref" : "#/components/schemas/Room"
         }, {
           "type" : "object",
-          "required" : [ "session_id", "session_token" ],
+          "description" : "[OpenTok 說明](https://tokbox.com/developer/guides/basics/)",
+          "required" : [ "session_id", "token" ],
           "properties" : {
             "session_id" : {
               "description" : "An OpenTok Seenssion ID",
@@ -493,7 +494,8 @@
             },
             "token" : {
               "type" : "string",
-              "example" : "ergv63rmv2Lma"
+              "example" : "ergv63rmv2Lma",
+              "description" : "OpenTok session token for client. ⚠️ <span style=\"color:red\">**One client one token!**</span> ⚠️"
             }
           }
         } ]
