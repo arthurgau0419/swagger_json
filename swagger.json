@@ -224,7 +224,7 @@
         }
       }
     },
-    "/talk/{vender}/rooms/{id}/members/lemove" : {
+    "/talk/{vender}/rooms/{id}/members/remove" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/rtc_vender"
       }, {
