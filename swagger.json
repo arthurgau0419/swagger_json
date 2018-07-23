@@ -108,7 +108,7 @@
     },
     "FlowerWall" : {
       "type" : "object",
-      "required" : [ "id", "plantID", "plantName", "url", "userID", "createTime", "longitude", "latitude", "collectionCount", "messageCount" ],
+      "required" : [ "id", "plantID", "plantName", "url", "userID", "userName", "createTime", "longitude", "latitude", "collectionCount", "messageCount" ],
       "properties" : {
         "id" : {
           "type" : "integer"
@@ -125,6 +125,9 @@
         },
         "userID" : {
           "type" : "integer"
+        },
+        "userName" : {
+          "type" : "string"
         },
         "createTime" : {
           "type" : "string",
