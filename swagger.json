@@ -7,7 +7,7 @@
   "swagger" : "2.0",
   "consumes" : [ "multipart/form-data" ],
   "produces" : [ "application/json" ],
-  "host" : "api.itri.ai",
+  "host" : "plantapi.disc.com.tw",
   "schemes" : [ "https" ],
   "basePath" : "/api",
   "tags" : [ {
