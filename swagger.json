@@ -804,6 +804,9 @@
                       },
                       "latitude" : {
                         "type" : "number"
+                      },
+                      "address_app" : {
+                        "type" : "string"
                       }
                     }
                   }
