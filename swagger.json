@@ -784,8 +784,12 @@
                   "type" : "array",
                   "items" : {
                     "type" : "object",
+                    "required" : [ "id", "plantID" ],
                     "properties" : {
                       "id" : {
+                        "type" : "integer"
+                      },
+                      "plantID" : {
                         "type" : "integer"
                       },
                       "url" : {
