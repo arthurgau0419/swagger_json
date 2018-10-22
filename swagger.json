@@ -491,7 +491,22 @@
         "summary" : "取得二線客服群組",
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "required" : [ "group_id" ],
+                "properties" : {
+                  "group_id" : {
+                    "type" : "integer"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -502,7 +517,25 @@
         "summary" : "取得二線客服人員",
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "required" : [ "user_id" ],
+                "properties" : {
+                  "user_id" : {
+                    "type" : "integer"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "phone_number" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
           }
         }
       }
