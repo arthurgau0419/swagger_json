@@ -473,6 +473,28 @@
           }
         }
       }
+    },
+    "/staff_info/name" : {
+      "get" : {
+        "tags" : [ "客服專用" ],
+        "summary" : "取得客服名稱",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/staff_info/groups_include_doctor" : {
+      "get" : {
+        "tags" : [ "客服專用" ],
+        "summary" : "取得二線客服群組",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
     }
   },
   "definitions" : {
