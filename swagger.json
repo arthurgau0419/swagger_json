@@ -24,6 +24,9 @@
   }, {
     "name" : "Note",
     "description" : "備忘錄"
+  }, {
+    "name" : "Staff",
+    "description" : "客服專用"
   } ],
   "consumes" : [ "application/x-www-form-urlencoded", "multipart/form-data" ],
   "produces" : [ "application/json" ],
@@ -476,7 +479,7 @@
     },
     "/staff_info/name" : {
       "get" : {
-        "tags" : [ "客服專用" ],
+        "tags" : [ "Staff" ],
         "summary" : "取得客服名稱",
         "responses" : {
           "200" : {
@@ -487,7 +490,7 @@
     },
     "/staff_info/groups_include_doctor" : {
       "get" : {
-        "tags" : [ "客服專用" ],
+        "tags" : [ "Staff" ],
         "summary" : "取得二線客服群組",
         "responses" : {
           "200" : {
@@ -513,7 +516,7 @@
     },
     "/staff_info/doctors" : {
       "get" : {
-        "tags" : [ "客服專用" ],
+        "tags" : [ "Staff" ],
         "summary" : "取得二線客服人員",
         "parameters" : [ {
           "in" : "query",
