@@ -162,7 +162,7 @@
           "required" : true
         } ],
         "responses" : {
-          "200" : {
+          "201" : {
             "description" : "OK",
             "schema" : {
               "$ref" : "#/definitions/LoginResponse"
@@ -515,6 +515,12 @@
       "get" : {
         "tags" : [ "客服專用" ],
         "summary" : "取得二線客服人員",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "group_id",
+          "type" : "integer",
+          "required" : false
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
