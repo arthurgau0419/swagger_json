@@ -548,6 +548,76 @@
           }
         }
       }
+    },
+    "/staff_info/staffs" : {
+      "get" : {
+        "tags" : [ "Staff" ],
+        "summary" : "取得一線客服人員",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "group_id",
+          "type" : "integer",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "required" : [ "user_id" ],
+                "properties" : {
+                  "user_id" : {
+                    "type" : "integer"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "phone_number" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff_info/users" : {
+      "get" : {
+        "tags" : [ "Staff" ],
+        "summary" : "取得VIP人員列表",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "group_id",
+          "type" : "integer",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "required" : [ "user_id" ],
+                "properties" : {
+                  "user_id" : {
+                    "type" : "integer"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "phone_number" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions" : {
