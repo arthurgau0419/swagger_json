@@ -310,7 +310,28 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/MissedCallResponse"
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "room_id" : {
+                    "type" : "integer"
+                  },
+                  "doctor_id" : {
+                    "type" : "integer"
+                  },
+                  "doctor_name" : {
+                    "type" : "string"
+                  },
+                  "call_type" : {
+                    "type" : "string"
+                  },
+                  "created_at" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              }
             }
           }
         }
