@@ -313,6 +313,7 @@
               "type" : "array",
               "items" : {
                 "type" : "object",
+                "required" : [ "room_id", "doctor_id", "call_type", "created_at" ],
                 "properties" : {
                   "room_id" : {
                     "type" : "integer"
