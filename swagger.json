@@ -418,10 +418,38 @@
           "description" : "有輸入客服id 則僅對開客服邀請"
         } ],
         "responses" : {
-          "200" : {
+          "201" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
+              "$ref" : "#/definitions/CallResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/invite_vip" : {
+      "post" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "一線建立通話並邀請VIP，非回撥",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "access_token",
+          "type" : "string",
+          "required" : true,
+          "description" : "憑證"
+        }, {
+          "in" : "formData",
+          "name" : "vip_id",
+          "type" : "string",
+          "required" : true,
+          "description" : "VIP用戶的ID"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/CallResponse"
             }
           }
         }
