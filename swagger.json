@@ -429,7 +429,7 @@
         "parameters" : [ {
           "in" : "formData",
           "name" : "vip_id",
-          "type" : "string",
+          "type" : "integer",
           "required" : true,
           "description" : "VIP用戶的ID"
         } ],
