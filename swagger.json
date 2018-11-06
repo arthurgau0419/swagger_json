@@ -402,12 +402,6 @@
         "description" : "目前功能為:一線對二線or二線對一線，可對群組or單人，staff_id or group_id擇一輸入",
         "parameters" : [ {
           "in" : "formData",
-          "name" : "access_token",
-          "type" : "string",
-          "required" : true,
-          "description" : "憑證"
-        }, {
-          "in" : "formData",
           "name" : "group_id",
           "type" : "integer",
           "description" : "登入者為一線則邀請二線群組, 登入者為二線則邀請一線群組"
@@ -433,12 +427,6 @@
         "summary" : "一線建立通話並邀請VIP，非回撥",
         "description" : "",
         "parameters" : [ {
-          "in" : "formData",
-          "name" : "access_token",
-          "type" : "string",
-          "required" : true,
-          "description" : "憑證"
-        }, {
           "in" : "formData",
           "name" : "vip_id",
           "type" : "string",
