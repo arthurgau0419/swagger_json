@@ -443,6 +443,35 @@
         }
       }
     },
+    "/rooms/invite_doctor" : {
+      "post" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "一線客服通話狀態下，邀請二線客服",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "room_name",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "group_id",
+          "type" : "integer"
+        }, {
+          "in" : "formData",
+          "name" : "doctor_id",
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "OK"
+          },
+          "schema" : {
+            "$ref" : "#/definitions/MessageResponse"
+          }
+        }
+      }
+    },
     "/rooms/user_answer" : {
       "post" : {
         "tags" : [ "Room/Client" ],
