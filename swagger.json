@@ -464,10 +464,10 @@
         } ],
         "responses" : {
           "201" : {
-            "description" : "OK"
-          },
-          "schema" : {
-            "$ref" : "#/definitions/MessageResponse"
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
           }
         }
       }
