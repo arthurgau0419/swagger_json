@@ -275,6 +275,17 @@
         "tags" : [ "Room/Service" ],
         "summary" : "通話紀錄",
         "description" : "",
+        "parameters" : [ {
+          "in" : "query",
+          "required" : false,
+          "name" : "page",
+          "type" : "integer"
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "qty",
+          "type" : "integer"
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK",
