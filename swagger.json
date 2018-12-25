@@ -304,7 +304,44 @@
     "/rooms/missed_call_doctor" : {
       "get" : {
         "tags" : [ "Room/Service" ],
-        "summary" : "二線客服未接來電列表",
+        "summary" : "二線撥打一線,未接來電列表",
+        "description" : "",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "required" : [ "room_id", "doctor_id", "call_type", "created_at" ],
+                "properties" : {
+                  "room_id" : {
+                    "type" : "integer"
+                  },
+                  "doctor_id" : {
+                    "type" : "integer"
+                  },
+                  "doctor_name" : {
+                    "type" : "string"
+                  },
+                  "call_type" : {
+                    "type" : "string"
+                  },
+                  "created_at" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rooms/missed_call_staff" : {
+      "get" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "一線撥打二線,未接來電列表",
         "description" : "",
         "responses" : {
           "200" : {
@@ -598,6 +635,32 @@
         "responses" : {
           "200" : {
             "description" : "OK"
+          }
+        }
+      }
+    },
+    "/staff_info/groups_include_staff" : {
+      "get" : {
+        "tags" : [ "Staff" ],
+        "summary" : "取得一線客服群組",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "required" : [ "group_id" ],
+                "properties" : {
+                  "group_id" : {
+                    "type" : "integer"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
           }
         }
       }
