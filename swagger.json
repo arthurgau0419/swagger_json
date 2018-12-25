@@ -932,7 +932,7 @@
     },
     "MissedCall" : {
       "type" : "object",
-      "required" : [ "room_id", "user_id", "times", "created_at" ],
+      "required" : [ "room_id", "user_id", "user_name", "times", "created_at" ],
       "properties" : {
         "room_id" : {
           "type" : "integer"
@@ -954,12 +954,18 @@
     },
     "MissedDoctorCall" : {
       "type" : "object",
-      "required" : [ "room_id", "doctor_id", "call_type", "created_at" ],
+      "required" : [ "room_id", "doctor_id", "doctor_name", "times", "call_type", "created_at" ],
       "properties" : {
         "room_id" : {
           "type" : "integer"
         },
         "doctor_id" : {
+          "type" : "integer"
+        },
+        "doctor_name" : {
+          "type" : "string"
+        },
+        "times" : {
           "type" : "integer"
         },
         "call_type" : {
