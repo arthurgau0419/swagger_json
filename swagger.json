@@ -611,16 +611,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "group_id" ],
-                "properties" : {
-                  "group_id" : {
-                    "type" : "integer"
-                  },
-                  "name" : {
-                    "type" : "string"
-                  }
-                }
+                "$ref" : "#/definitions/Group"
               }
             }
           }
@@ -637,16 +628,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "group_id" ],
-                "properties" : {
-                  "group_id" : {
-                    "type" : "integer"
-                  },
-                  "name" : {
-                    "type" : "string"
-                  }
-                }
+                "$ref" : "#/definitions/Group"
               }
             }
           }
@@ -1005,6 +987,20 @@
         "created_at" : {
           "type" : "string",
           "format" : "date-time"
+        }
+      }
+    },
+    "Group" : {
+      "type" : "object",
+      "required" : [ "group_id", "name" ],
+      "properties" : {
+        "group_id" : {
+          "type" : "integer",
+          "example" : "1"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "醫生"
         }
       }
     },
