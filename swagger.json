@@ -312,26 +312,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "room_id", "doctor_id", "call_type", "created_at" ],
-                "properties" : {
-                  "room_id" : {
-                    "type" : "integer"
-                  },
-                  "doctor_id" : {
-                    "type" : "integer"
-                  },
-                  "doctor_name" : {
-                    "type" : "string"
-                  },
-                  "call_type" : {
-                    "type" : "string"
-                  },
-                  "created_at" : {
-                    "type" : "string",
-                    "format" : "date-time"
-                  }
-                }
+                "$ref" : "#/definitions/MissedDoctorCall"
               }
             }
           }
@@ -349,26 +330,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "room_id", "doctor_id", "call_type", "created_at" ],
-                "properties" : {
-                  "room_id" : {
-                    "type" : "integer"
-                  },
-                  "doctor_id" : {
-                    "type" : "integer"
-                  },
-                  "doctor_name" : {
-                    "type" : "string"
-                  },
-                  "call_type" : {
-                    "type" : "string"
-                  },
-                  "created_at" : {
-                    "type" : "string",
-                    "format" : "date-time"
-                  }
-                }
+                "$ref" : "#/definitions/MissedStaffCall"
               }
             }
           }
@@ -1037,6 +999,44 @@
         },
         "times" : {
           "type" : "integer"
+        },
+        "created_at" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "MissedDoctorCall" : {
+      "type" : "object",
+      "required" : [ "room_id", "doctor_id", "call_type", "created_at" ],
+      "properties" : {
+        "room_id" : {
+          "type" : "integer"
+        },
+        "doctor_id" : {
+          "type" : "integer"
+        },
+        "call_type" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "MissedStaffCall" : {
+      "type" : "object",
+      "required" : [ "room_id", "staff_id", "call_type", "created_at" ],
+      "properties" : {
+        "room_id" : {
+          "type" : "integer"
+        },
+        "staff_id" : {
+          "type" : "integer"
+        },
+        "call_type" : {
+          "type" : "string"
         },
         "created_at" : {
           "type" : "string",
