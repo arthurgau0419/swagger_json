@@ -1022,7 +1022,7 @@
         },
         "role" : {
           "type" : "string",
-          "enum" : [ "user", "staff", "doctor" ]
+          "enum" : [ "user", "staff", "doctor", "admin" ]
         }
       }
     },
