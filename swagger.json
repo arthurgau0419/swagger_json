@@ -669,19 +669,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "user_id" ],
-                "properties" : {
-                  "user_id" : {
-                    "type" : "integer"
-                  },
-                  "name" : {
-                    "type" : "string"
-                  },
-                  "phone_number" : {
-                    "type" : "string"
-                  }
-                }
+                "$ref" : "#/definitions/AnotherUser"
               }
             }
           }
@@ -704,19 +692,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "user_id" ],
-                "properties" : {
-                  "user_id" : {
-                    "type" : "integer"
-                  },
-                  "name" : {
-                    "type" : "string"
-                  },
-                  "phone_number" : {
-                    "type" : "string"
-                  }
-                }
+                "$ref" : "#/definitions/AnotherUser"
               }
             }
           }
@@ -739,19 +715,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "object",
-                "required" : [ "user_id" ],
-                "properties" : {
-                  "user_id" : {
-                    "type" : "integer"
-                  },
-                  "name" : {
-                    "type" : "string"
-                  },
-                  "phone_number" : {
-                    "type" : "string"
-                  }
-                }
+                "$ref" : "#/definitions/AnotherUser"
               }
             }
           }
@@ -1063,6 +1027,24 @@
         "role" : {
           "type" : "string",
           "enum" : [ "user", "staff" ]
+        }
+      }
+    },
+    "AnotherUser" : {
+      "type" : "object",
+      "required" : [ "id", "name", "phone_number" ],
+      "properties" : {
+        "user_id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "陳小春"
+        },
+        "phone_number" : {
+          "type" : "string",
+          "example" : "0912345678"
         }
       }
     },
