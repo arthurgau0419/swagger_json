@@ -993,12 +993,18 @@
     },
     "MissedStaffCall" : {
       "type" : "object",
-      "required" : [ "room_id", "staff_id", "call_type", "created_at" ],
+      "required" : [ "room_id", "staff_id", "staff_name", "times", "call_type", "created_at" ],
       "properties" : {
         "room_id" : {
           "type" : "integer"
         },
         "staff_id" : {
+          "type" : "integer"
+        },
+        "staff_name" : {
+          "type" : "string"
+        },
+        "times" : {
           "type" : "integer"
         },
         "call_type" : {
