@@ -743,7 +743,7 @@
     },
     "LoginResponse" : {
       "type" : "object",
-      "required" : [ "message", "user_id", "access_token", "account", "role" ],
+      "required" : [ "message", "user_id", "access_token", "account", "role", "ring_time" ],
       "properties" : {
         "message" : {
           "type" : "string"
@@ -771,6 +771,9 @@
         "phone_number" : {
           "type" : "string",
           "example" : "123454"
+        },
+        "ring_time" : {
+          "type" : "integer"
         },
         "role" : {
           "type" : "string",
