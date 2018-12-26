@@ -861,6 +861,7 @@
     },
     "MissedCallResponse" : {
       "type" : "object",
+      "required" : [ "missed_call" ],
       "properties" : {
         "syscode" : {
           "type" : "integer"
