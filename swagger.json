@@ -387,11 +387,32 @@
     "/rooms/call_back" : {
       "post" : {
         "tags" : [ "Room/Service" ],
-        "summary" : "回撥",
+        "summary" : "一線回撥使用者",
         "description" : "",
         "parameters" : [ {
           "in" : "formData",
           "name" : "user_id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/CallResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rooms/call_back_staff" : {
+      "post" : {
+        "tags" : [ "Room/Service" ],
+        "summary" : "客服互相回撥",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "room_id",
           "type" : "integer",
           "required" : true
         } ],
