@@ -1078,7 +1078,7 @@
       "type" : "object",
       "required" : [ "id", "name", "phone_number" ],
       "properties" : {
-        "user_id" : {
+        "id" : {
           "type" : "integer",
           "example" : 1
         },
