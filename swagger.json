@@ -1089,6 +1089,9 @@
         "phone_number" : {
           "type" : "string",
           "example" : "0912345678"
+        },
+        "group_id" : {
+          "type" : "integer"
         }
       }
     },
