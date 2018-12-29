@@ -683,7 +683,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/AnotherUser"
+                "$ref" : "#/definitions/AnotherUser2"
               }
             }
           }
@@ -706,7 +706,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/AnotherUser"
+                "$ref" : "#/definitions/AnotherUser2"
               }
             }
           }
@@ -1074,9 +1074,30 @@
         }
       }
     },
+    "AnotherUser2" : {
+      "type" : "object",
+      "required" : [ "user_id", "name", "phone_number" ],
+      "properties" : {
+        "user_id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "陳小春"
+        },
+        "phone_number" : {
+          "type" : "string",
+          "example" : "0912345678"
+        },
+        "group_id" : {
+          "type" : "integer"
+        }
+      }
+    },
     "AnotherUser" : {
       "type" : "object",
-      "required" : [ "id", "name", "phone_number" ],
+      "required" : [ "id", "name", "phone_number", "group_id" ],
       "properties" : {
         "id" : {
           "type" : "integer",
