@@ -463,6 +463,12 @@
           "type" : "integer",
           "required" : true,
           "description" : "VIP用戶的ID"
+        }, {
+          "in formData" : null,
+          "name" : "room_name",
+          "type" : "string",
+          "required" : false,
+          "description" : "若一線通話中才撥打vip,請傳入room_name.反之則不填"
         } ],
         "responses" : {
           "201" : {
