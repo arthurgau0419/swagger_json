@@ -464,7 +464,7 @@
           "required" : true,
           "description" : "VIP用戶的ID"
         }, {
-          "in formData" : null,
+          "in" : "formData",
           "name" : "room_name",
           "type" : "string",
           "required" : false,
